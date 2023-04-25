@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@section styles{
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+
+}
+
+@model List<UserDTO>
+
+<div class="container" style="padding-top: 4%;">
+    <a type="button" class="btn btn-outline-success" asp-action="CreateUser" asp-controller="Home">
+        Create User
+    </a>
+
+    <div class="text-center pt-5">
+        <table id="dtBasicExample" class="table table-striped table-bordered" style="width:100%">
+            <thead>
+                <tr>
+
+                    <th class="th-sm">
+                        User Name
+
+                    </th>
+                    <th class="th-sm">
+                        Email
+
+                    </th>
+
+                    <th class="th-sm">
+                        Id
+                    </th>
+                    <th class="th-sm">
+                        Roles
+                    </th>
+                    <th class="th-sm">
+                        Action
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.username</td>
+                        <td>@item.Email</td>
+                        <td>@item.UserId</td>
+                        <td>
+                            @foreach (var role in item.roles)
+                            {
+                                @role  
+                            }
+                        </td>
+                        <td>
+                            <a type="button" asp-action="AssignUser" asp-route-UserId="@item.UserId" asp-controller="Home" class="btn btn-primary">Assign </a>
+                            <a type="button" asp-action="Index" asp-controller="Home" class="btn btn-outline-success">Edit </a>
+                            <a type="button" asp-action="Delete" asp-route-UserId="@item.UserId" asp-controller="Home" class="btn btn-danger">Delete </a>
+
+                        </td>
+                    </tr>
+
+                }
+
+            </tbody>
+            <tfoot>
+                <tr>
+
+                    <th class="th-sm">
+                        User Name
+
+                    </th>
+                    <th class="th-sm">
+                        Email
+
+                    </th>
+                    <th class="th-sm">
+                        Id
+                    </th>
+                    <th class="th-sm">
+                        Roles
+                    </th>
+                    <th class="th-sm">
+                        Action
+
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+
+        });
+    </script>
+}

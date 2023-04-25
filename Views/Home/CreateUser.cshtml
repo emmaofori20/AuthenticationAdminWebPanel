@@ -1,0 +1,51 @@
+﻿@model User
+@{
+	ViewBag.Title = "Create User";
+	var selectList = new SelectList(
+		new List<SelectListItem>
+				{
+			new SelectListItem {Text = "User", Value = "User"},
+			new SelectListItem {Text = "Admin", Value = "Admin"},
+				}, "Value", "Text");
+}
+
+<div style="padding-top: 4%;">
+	<div class="card" style="padding: 4% 2%;">
+		@if (ViewBag.CreationError != null)
+		{
+			<div class="alert alert-danger">@ViewBag.CreationError</div>
+		}
+		
+		<h3>Create User</h3>
+		<form method="post">
+
+			<div class="form-outline mb-4">
+				<label class="form-label">Email</label>
+				<input type="text" asp-for="Email" class="form-control" />
+			</div>
+
+			<div class="form-outline mb-4">
+				<label class="form-label">User Name</label>
+				<input type="text" asp-for="Username" class="form-control" />
+			</div>
+			<div class="form-outline mb-4">
+				<label class="form-label">Password</label>
+				<input type="password" asp-for="Password" class="form-control" />
+			</div>
+
+			<div class="form-outline mb-4">
+				<label class="form-label">Role</label>
+				<select asp-for="Role" class="form-control" asp-items="selectList">
+				</select>
+				@*		<input type="text" asp-for="Username" class="form-control" />
+				*@
+			</div>
+
+
+			<!-- Submit button -->
+			<button type="submit" class="btn btn-success btn-block mb-4">Create User</button>
+			<a type="button" asp-action="Index" asp-controller="Home" class="btn btn-danger btn-block mb-4"> Back</a>
+		</form>
+	</div>
+	
+</div>
