@@ -36,6 +36,15 @@ namespace AuthenticationAdminWebPanel.Controllers
                 return View();
             }
 
+        } 
+        
+        public async Task<IActionResult> Profile()
+        {
+
+                ViewBag.ErrorMessage = "Invalid username or password.";
+                return View();
+            
+
         }
 
         public IActionResult CreateUser()

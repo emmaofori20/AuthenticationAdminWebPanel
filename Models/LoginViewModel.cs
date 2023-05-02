@@ -1,4 +1,5 @@
 ﻿using shared.DTOs;
+using System.ComponentModel.DataAnnotations;
 
 namespace AuthenticationAdminWebPanel.Models
 {
@@ -22,6 +23,7 @@ namespace AuthenticationAdminWebPanel.Models
 		public List<int> ApplicationId { get; set; }
 
 	}
+
 
 
 	public class UserApplication
